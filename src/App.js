@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import { useCallback, useState } from 'react';
+import Categories from './components/Categories';
+import NewsList from './components/NewsList';
+import { Route, Routes } from 'react-router-dom';
+import NewsPage from './pages/NewsPage';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Routes>
+      <Route path="/" element={<NewsPage />} />
+      <Route path="/:category" element={<NewsPage />} />
+    </Routes>
   );
-}
+  // 카테고리 값을 리액트 라우터의 URL 파라미터를 사용하여 관리
+
+  // const [category, setCategory] = useState('all');
+  // const onSelect = useCallback((category) => setCategory(category), []); // category 값을 업데이트하는 함수
+  // return (
+  //   <>
+  //     <Categories category={category} onSelect={onSelect} />
+  //     <NewsList category={category} />
+  //   </>
+  // );
+  // 카테고리 값을 useState로 관리
+};
 
 export default App;
